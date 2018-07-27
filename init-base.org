@@ -27,5 +27,6 @@ The following code installs el-get if it doesn't exists.
 #+END_SRC
 
 #+BEGIN_SRC emacs-lisp :tangle yes :exports none
-(provide 'bootstrap)
+(provide 'init-base)
 #+END_SRC
+* Basic settings
