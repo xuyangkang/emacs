@@ -3,6 +3,21 @@
 #+PROPERTY: header-args :tangle yes
 #+OPTIONS: toc:t
 
+* Table of content                                                      :TOC:
+- [[#bootstrap-emacs][Bootstrap emacs]]
+  - [[#el-get][el-get]]
+  - [[#use-package][use-package]]
+- [[#basic-settings][Basic Settings]]
+  - [[#better-defaults][Better defaults]]
+  - [[#xclip][xclip]]
+  - [[#smex][smex]]
+  - [[#switch-window][switch-window]]
+  - [[#org-mode][org-mode]]
+  - [[#theme][Theme]]
+- [[#programming][Programming]]
+  - [[#common][Common]]
+  - [[#language-specified][Language specified]]
+
 * Bootstrap emacs
 ** el-get
 I'd like to have an apt-get like experience. So I choose el-get.
@@ -18,7 +33,6 @@ The following code installs el-get if it doesn't exists.
       (eval-print-last-sexp)))
 
   (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-  (el-get 'sync)
 #+END_SRC
 
 ** use-package
@@ -90,6 +104,10 @@ smex enhances M-x.
 
 ** org-mode
 #+BEGIN_SRC emacs-lisp
+  (el-get-bundle snosov1/toc-org)
+  (use-package toc-org
+    :config
+    (add-hook 'org-mode-hook 'toc-org-enable))
   (setq org-src-tab-acts-natively t)
 #+END_SRC
 
@@ -143,7 +161,7 @@ Install and load your favourite theme here:
   (add-hook 'before-save-hook 'gofmt-before-save))
 #+END_SRC
 
-* The last step :noexport:
+* The last step                                                    :noexport:
 #+BEGIN_SRC emacs-lisp
   (provide 'init-base)
 #+END_SRC
