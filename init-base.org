@@ -1,0 +1,31 @@
+#+AUTHOR: Xuyang Kang
+#+BABEL: :cache yes
+#+PROPERTY: header-args :tangle yes
+
+* Bootstrap emacs
+** el-get
+I'd like to have an apt-get like experience. So I choose el-get.
+The following code installs el-get if it doesn't exists.
+#+BEGIN_SRC emacs-lisp
+(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+
+(unless (require 'el-get nil 'noerror)
+  (with-current-buffer
+      (url-retrieve-synchronously
+       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+    (goto-char (point-max))
+    (eval-print-last-sexp)))
+
+(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+(el-get 'sync)
+#+END_SRC
+
+** use-package
+#+BEGIN_SRC emacs-lisp
+(unless (require 'use-package nil 'noerror)
+  (el-get-bundle use-package))
+#+END_SRC
+
+#+BEGIN_SRC emacs-lisp :tangle yes
+(provide 'bootstrap)
+#+END_SRC
