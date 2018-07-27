@@ -36,10 +36,6 @@ Package better-defaults literally does its job. I fixed some defaults that I thi
 (el-get-bundle better-defaults)
 (use-package better-defaults)
 
-(global-linum-mode 1)
-(setq-default indent-tabs-mode nil)
-(setq inhibit-startup-screen t)
-(setq visible-bell nil)
 (setq ring-bell-function 'ignore)
 (setq make-backup-files nil)
 (add-hook 'before-save-hook 'delete-trailing-whitespace)
