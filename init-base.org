@@ -3,6 +3,7 @@
 #+PROPERTY: header-args :tangle yes
 
 * Bootstrap emacs
+
 ** el-get
 I'd like to have an apt-get like experience. So I choose el-get.
 The following code installs el-get if it doesn't exists.
@@ -26,7 +27,69 @@ The following code installs el-get if it doesn't exists.
   (el-get-bundle use-package))
 #+END_SRC
 
+* Basic Settings
+
+** Better defaults
+Package better-defaults literally does its job. I fixed some defaults that I think is worse.
+
+#+BEGIN_SRC emacs-lisp
+(el-get-bundle better-defaults)
+(use-package better-defaults)
+
+(global-linum-mode 1)
+(setq-default indent-tabs-mode nil)
+(setq inhibit-startup-screen t)
+(setq visible-bell nil)
+(setq ring-bell-function 'ignore)
+(setq make-backup-files nil)
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(load-theme 'wombat)
+#+END_SRC
+
+** xclip
+xclip connects your system's clipboard and emacs's cut ring, if you're using emacs from terminal.
+
+#+BEGIN_SRC emacs-lisp
+(el-get-bundle xclip)
+(use-package xclip)
+#+END_SRC
+
+** smex
+smex enhances M-x.
+
+#+BEGIN_SRC emacs-lisp
+(el-get-bundle smex)
+(use-package smex
+  :config
+  (global-set-key (kbd "M-x") 'smex)
+  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+  (smex-initialize))
+#+END_SRC
+
+** switch-window
+#+BEGIN_SRC emacs-lisp
+(el-get-bundle switch-window)
+(require 'switch-window)
+(global-set-key (kbd "C-x o") 'switch-window)
+(global-set-key (kbd "C-x 1") 'switch-window-then-maximize)
+(global-set-key (kbd "C-x 2") 'switch-window-then-split-below)
+(global-set-key (kbd "C-x 3") 'switch-window-then-split-right)
+(global-set-key (kbd "C-x 0") 'switch-window-then-delete)
+
+(global-set-key (kbd "C-x 4 d") 'switch-window-then-dired)
+(global-set-key (kbd "C-x 4 f") 'switch-window-then-find-file)
+(global-set-key (kbd "C-x 4 m") 'switch-window-then-compose-mail)
+(global-set-key (kbd "C-x 4 r") 'switch-window-then-find-file-read-only)
+
+(global-set-key (kbd "C-x 4 C-f") 'switch-window-then-find-file)
+(global-set-key (kbd "C-x 4 C-o") 'switch-window-then-display-buffer)
+
+(global-set-key (kbd "C-x 4 0") 'switch-window-then-kill-buffer)
+
+(global-set-key (kbd "M-[") 'previous-multiframe-window)
+(global-set-key (kbd "M-]") 'next-multiframe-window)
+#+END_SRC
+
 #+BEGIN_SRC emacs-lisp :tangle yes :exports none
 (provide 'init-base)
 #+END_SRC
-* Basic settings
