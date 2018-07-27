@@ -3,89 +3,102 @@
 #+PROPERTY: header-args :tangle yes
 
 * Bootstrap emacs
-
 ** el-get
 I'd like to have an apt-get like experience. So I choose el-get.
 The following code installs el-get if it doesn't exists.
 #+BEGIN_SRC emacs-lisp
-(add-to-list 'load-path "~/.emacs.d/el-get/el-get")
+  (add-to-list 'load-path "~/.emacs.d/el-get/el-get")
 
-(unless (require 'el-get nil 'noerror)
-  (with-current-buffer
-      (url-retrieve-synchronously
-       "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
-    (goto-char (point-max))
-    (eval-print-last-sexp)))
+  (unless (require 'el-get nil 'noerror)
+    (with-current-buffer
+        (url-retrieve-synchronously
+         "https://raw.githubusercontent.com/dimitri/el-get/master/el-get-install.el")
+      (goto-char (point-max))
+      (eval-print-last-sexp)))
 
-(add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
-(el-get 'sync)
+  (add-to-list 'el-get-recipe-path "~/.emacs.d/el-get-user/recipes")
+  (el-get 'sync)
 #+END_SRC
 
 ** use-package
 #+BEGIN_SRC emacs-lisp
-(unless (require 'use-package nil 'noerror)
-  (el-get-bundle use-package))
+  (unless (require 'use-package nil 'noerror)
+    (el-get-bundle use-package))
 #+END_SRC
 
 * Basic Settings
-
 ** Better defaults
 Package better-defaults literally does its job. I fixed some defaults that I think is worse.
 
 #+BEGIN_SRC emacs-lisp
-(el-get-bundle better-defaults)
-(use-package better-defaults)
+  (el-get-bundle better-defaults)
+  (use-package better-defaults)
 
-(setq ring-bell-function 'ignore)
-(setq make-backup-files nil)
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
-(load-theme 'wombat)
+  ;; ring is annoying
+  (setq ring-bell-function 'ignore)
+
+  ;; backup file usually doesn't help
+  (setq make-backup-files nil)
+  (add-hook 'before-save-hook 'delete-trailing-whitespace)
 #+END_SRC
 
 ** xclip
-xclip connects your system's clipboard and emacs's cut ring, if you're using emacs from terminal.
+xclip connects your os's clipboard and emacs's cut ring, if you're using emacs from terminal.
 
 #+BEGIN_SRC emacs-lisp
-(el-get-bundle xclip)
-(use-package xclip)
+  (el-get-bundle xclip)
+  (use-package xclip)
 #+END_SRC
 
 ** smex
 smex enhances M-x.
 
 #+BEGIN_SRC emacs-lisp
-(el-get-bundle smex)
-(use-package smex
-  :config
-  (global-set-key (kbd "M-x") 'smex)
-  (global-set-key (kbd "M-X") 'smex-major-mode-commands)
-  (smex-initialize))
+  (el-get-bundle smex)
+  (use-package smex
+    :config
+    (global-set-key (kbd "M-x") 'smex)
+    (global-set-key (kbd "M-X") 'smex-major-mode-commands)
+    (smex-initialize))
 #+END_SRC
 
 ** switch-window
 #+BEGIN_SRC emacs-lisp
-(el-get-bundle switch-window)
-(require 'switch-window)
-(global-set-key (kbd "C-x o") 'switch-window)
-(global-set-key (kbd "C-x 1") 'switch-window-then-maximize)
-(global-set-key (kbd "C-x 2") 'switch-window-then-split-below)
-(global-set-key (kbd "C-x 3") 'switch-window-then-split-right)
-(global-set-key (kbd "C-x 0") 'switch-window-then-delete)
+  (el-get-bundle switch-window)
+  (use-package switch-window
+    :config
+    (global-set-key (kbd "C-x o") 'switch-window)
+    (global-set-key (kbd "C-x 1") 'switch-window-then-maximize)
+    (global-set-key (kbd "C-x 2") 'switch-window-then-split-below)
+    (global-set-key (kbd "C-x 3") 'switch-window-then-split-right)
+    (global-set-key (kbd "C-x 0") 'switch-window-then-delete)
 
-(global-set-key (kbd "C-x 4 d") 'switch-window-then-dired)
-(global-set-key (kbd "C-x 4 f") 'switch-window-then-find-file)
-(global-set-key (kbd "C-x 4 m") 'switch-window-then-compose-mail)
-(global-set-key (kbd "C-x 4 r") 'switch-window-then-find-file-read-only)
+    (global-set-key (kbd "C-x 4 d") 'switch-window-then-dired)
+    (global-set-key (kbd "C-x 4 f") 'switch-window-then-find-file)
+    (global-set-key (kbd "C-x 4 m") 'switch-window-then-compose-mail)
+    (global-set-key (kbd "C-x 4 r") 'switch-window-then-find-file-read-only)
 
-(global-set-key (kbd "C-x 4 C-f") 'switch-window-then-find-file)
-(global-set-key (kbd "C-x 4 C-o") 'switch-window-then-display-buffer)
+    (global-set-key (kbd "C-x 4 C-f") 'switch-window-then-find-file)
+    (global-set-key (kbd "C-x 4 C-o") 'switch-window-then-display-buffer)
 
-(global-set-key (kbd "C-x 4 0") 'switch-window-then-kill-buffer)
+    (global-set-key (kbd "C-x 4 0") 'switch-window-then-kill-buffer)
 
-(global-set-key (kbd "M-[") 'previous-multiframe-window)
-(global-set-key (kbd "M-]") 'next-multiframe-window)
+    (global-set-key (kbd "M-[") 'previous-multiframe-window)
+    (global-set-key (kbd "M-]") 'next-multiframe-window))
 #+END_SRC
 
-#+BEGIN_SRC emacs-lisp :tangle yes :exports none
+** org-mode
+#+BEGIN_SRC emacs-lisp
+  (setq org-src-tab-acts-natively t)
+#+END_SRC
+
+** Theme
+Install and load your favourite theme here:
+#+BEGIN_SRC emacs-lisp
+  (load-theme 'wombat)
+#+END_SRC
+
+* The last step
+#+BEGIN_SRC emacs-lisp
 (provide 'init-base)
 #+END_SRC

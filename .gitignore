@@ -1,2 +1,5 @@
 # installed packages
 el-get/
+
+# smex items
+smex-items
