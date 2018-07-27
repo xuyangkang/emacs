@@ -162,7 +162,7 @@ Install and load your favourite theme here:
   (add-hook 'before-save-hook 'gofmt-before-save))
 #+END_SRC
 
-* The last step
+* The last step :noexport:
 #+BEGIN_SRC emacs-lisp
   (provide 'init-base)
 #+END_SRC
