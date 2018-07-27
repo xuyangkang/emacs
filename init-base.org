@@ -1,21 +1,7 @@
 #+AUTHOR: Xuyang Kang
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
-
-* Table of Contents                                           :TOC:
-- [[#bootstrap-emacs][Bootstrap emacs]]
-  - [[#el-get][el-get]]
-  - [[#use-package][use-package]]
-- [[#basic-settings][Basic Settings]]
-  - [[#better-defaults][Better defaults]]
-  - [[#xclip][xclip]]
-  - [[#smex][smex]]
-  - [[#switch-window][switch-window]]
-  - [[#org-mode][org-mode]]
-  - [[#theme][Theme]]
-- [[#programming][Programming]]
-  - [[#common][Common]]
-  - [[#language-specified][Language specified]]
+#+OPTIONS: toc: t
 
 * Bootstrap emacs
 ** el-get
@@ -104,10 +90,6 @@ smex enhances M-x.
 
 ** org-mode
 #+BEGIN_SRC emacs-lisp
-  (el-get-bundle toc-org :type github :pkgname "toc-org")
-  (use-package toc-org
-    :config
-    (add-hook 'org-mode-hook 'toc-org-enable))
   (setq org-src-tab-acts-natively t)
 #+END_SRC
 
