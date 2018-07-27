@@ -3,6 +3,21 @@
 #+PROPERTY: header-args :tangle yes
 
 * Table of Contents                                           :TOC:
+- [[#bootstrap-emacs][Bootstrap emacs]]
+  - [[#el-get][el-get]]
+  - [[#use-package][use-package]]
+- [[#basic-settings][Basic Settings]]
+  - [[#better-defaults][Better defaults]]
+  - [[#xclip][xclip]]
+  - [[#smex][smex]]
+  - [[#switch-window][switch-window]]
+  - [[#org-mode][org-mode]]
+  - [[#theme][Theme]]
+- [[#programming][Programming]]
+  - [[#common][Common]]
+  - [[#language-specified][Language specified]]
+- [[#the-last-step][The last step]]
+
 * Bootstrap emacs
 ** el-get
 I'd like to have an apt-get like experience. So I choose el-get.
