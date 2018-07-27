@@ -16,7 +16,6 @@
 - [[#programming][Programming]]
   - [[#common][Common]]
   - [[#language-specified][Language specified]]
-- [[#the-last-step][The last step]]
 
 * Bootstrap emacs
 ** el-get
@@ -105,7 +104,7 @@ smex enhances M-x.
 
 ** org-mode
 #+BEGIN_SRC emacs-lisp
-  (el-get-bundle toc-org)
+  (el-get-bundle toc-org :type github :pkgname "toc-org")
   (use-package toc-org
     :config
     (add-hook 'org-mode-hook 'toc-org-enable))
