@@ -1,7 +1,7 @@
 #+AUTHOR: Xuyang Kang
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
-#+OPTIONS: toc: t
+#+OPTIONS: toc:t
 
 * Bootstrap emacs
 ** el-get
