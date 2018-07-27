@@ -2,6 +2,7 @@
 #+BABEL: :cache yes
 #+PROPERTY: header-args :tangle yes
 
+* Table of Contents                                           :TOC:
 * Bootstrap emacs
 ** el-get
 I'd like to have an apt-get like experience. So I choose el-get.
@@ -89,6 +90,10 @@ smex enhances M-x.
 
 ** org-mode
 #+BEGIN_SRC emacs-lisp
+  (el-get-bundle toc-org)
+  (use-package toc-org
+    :config
+    (add-hook 'org-mode-hook 'toc-org-enable))
   (setq org-src-tab-acts-natively t)
 #+END_SRC
 
